@@ -1,6 +1,10 @@
 package com.aragog;
 
+import java.util.Collection;
+
 import com.aragog.Aragog;
+import com.aragog.datamodel.GetItemsRequest;
+import com.aragog.datamodel.Item;
 
 public class AragogTest {
     /**
@@ -11,6 +15,12 @@ public class AragogTest {
      */
     public static void main(String[] args) {
         Aragog aragog = new Aragog();
-        aragog.getTitlesAndPrices("https://newyork.craigslist.org/search/bka");
+        aragog.getItemInformation("https://newyork.craigslist.org/search/bka");
+        
+        GetItemsRequest getItemRequest = new GetItemsRequest("Book", 10);
+        Collection<Item> items = aragog.searchItem(getItemRequest);
+        for(Item item: items){
+            System.out.println("Item Title:"+ item.getTitle()+"Item Price:" +item.getPrice());
+        }
     }
 }
